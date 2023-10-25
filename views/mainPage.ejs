@@ -14,24 +14,48 @@
             background-color: aqua;
         }
         .right{
+            margin-left: 10px;
             width: 80%;
             height: 98.5vh;
             background-color: blanchedalmond;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .img{
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+        }
+        .card{
+            width: 400px;
         }
     </style>
 </head>
 <body>
     <section>
-        <% console.log(userProfile, medicines); %>
+        <% console.log(userProfile, medicines) %>
         <div class="left">
             <h1>Profile</h1>
-            
+            <img src="<%= userProfile.profileImage %>" alt="" class="img">
+            <p>Name: <%= userProfile.name %></p>
+            <p>Age: <%= userProfile.age %></p>
+            <p>Gender: <%= userProfile.gender %></p>
+            <p>Balance: <%= userProfile.balance %></p>
 
         </div>
         <div class="right">
             <h1>Medicines</h1>
             <div class="card">
-
+                <img src="<%= medicines[0].imageUrl %>" alt="" class="img">
+                <p>Name: <%= medicines[0].name %></p>
+                <p>Description: <%= medicines[0].description %></p>
+                <p>Price : <%= medicines[0].price %></p>
+            </div>
+            <div class="card">
+                <img src="<%= medicines[0].imageUrl %>" alt="" class="img">
+                <p>Name: <%= medicines[0].name %></p>
+                <p>Description: <%= medicines[0].description %></p>
+                <p>Price : <%= medicines[0].price %></p>
             </div>
         </div>
     </section>

@@ -10,7 +10,7 @@
     {
         "name" : "Christian",
         "age" : 22,
-        "profileImage" : "",
+        "profileImage" : "https://pbs.twimg.com/profile_images/1656290951206191112/xoSOLsuV_400x400.jpg",
         "gender" : "Male",
         "UserId" : 2,
         "balance":1000000
