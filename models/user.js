@@ -18,11 +18,17 @@ module.exports = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     isAdmin: {
       type: DataTypes.BOOLEAN,
-      defaultValue:false
+      defaultValue: false
     }
   }, {
     sequelize,
     modelName: 'User',
   });
+  User.beforeCreate((data, options) => {
+    var bcrypt = require('bcryptjs')
+    var salt = bcrypt.genSaltSync(10)
+    var hash = bcrypt.hashSync(data.password, salt)
+    data.password = hash
+  })
   return User;
 };
