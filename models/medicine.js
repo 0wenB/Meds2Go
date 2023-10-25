@@ -15,7 +15,7 @@ module.exports = (sequelize, DataTypes) => {
   }
   Medicine.init({
     name: DataTypes.STRING,
-    description: DataTypes.STRING,
+    description: DataTypes.TEXT,
     price: DataTypes.INTEGER
   }, {
     sequelize,
