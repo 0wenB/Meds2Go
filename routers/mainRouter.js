@@ -5,7 +5,7 @@ const router = require('express').Router()
 //render main page, tampilan profile user dan find all medicines
 router.get('/:idPatient', MainController.mainPagePatient)
 //post ke invoices idPatient dan idMedicine dari params
-router.post('/:idPatient/buy/:idMedicine', MainController.mainPagePatient)
+router.post('/:idPatient/buy/:idMedicine', MainController.postInvoice)
 // render halaman checkout obat
 router.get('/:idPatient/checkout', MainController.mainPagePatient)
 //post destroy

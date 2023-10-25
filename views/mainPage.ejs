@@ -7,39 +7,65 @@
     <style>
         section{
             display: flex;
+            flex-wrap: wrap;
         }
         .left{
-            width: 20%;
-            height: 98.5vh;
-            background-color: aqua;
+            width: 20vw;
+            height:inherit;
+            background-color: #FFE194;
         }
         .right{
             margin-left: 10px;
-            width: 80%;
+            width: 75vw;
             height: auto;
-            background-color: blanchedalmond;
+            background-color: #E8F6EF;
             display: flex;
             flex-direction: column;
             align-items: center;
         }
         .img{
             width: 100%;
-            max-width: 400px;
+            max-width: 100%;
             height: 300px;
             object-fit: cover;
         }
         .card{
+            border-radius: 20px;
             margin: 10px;
             width: 30%;
             height: 600px;
             display: flex;
             flex-direction: column;
             justify-content:space-between;
+            align-items: center;
+            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+            transition: 0.3s;
         }
+        .card .img{
+            border-radius: 20px 20px 0 0;
+        }
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+            }
         .cards{
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
+            
+        }
+        .container {
+            padding: 2px 16px;
+        }
+        .form{
+            margin-bottom: 10px;
+        }
+        .addCart{
+        transform: translateY(4px);
+        background-color : #31B0D5;
+        color: white;
+        padding: 8px 20px;
+        border-radius: 4px;
+        border-color: #ffffff;
         }
         input[type="number"] {
         -webkit-appearance: textfield;
@@ -101,12 +127,31 @@
         font-weight: bold;
         text-align: center;
         }
+        .checkout {
+        background-color : #31B0D5;
+        color: white;
+        padding: 15px 20px;
+        border-radius: 40px;
+        border-color: #ffffff;
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+        }
+
+        #botLeftButton {
+        position: fixed;
+        bottom: 1rem;
+        right: 1rem;
+        }
+
+        .left p{
+            margin-left: 15px;
+            font-size: 25px;
+        }
+        
     </style>
 </head>
 <body>
     <section>
-        <% console.log(userProfile, medicines) %>
-        <div class="left">
+        <div class="left container">
             <h1>Profile</h1>
             <img src="<%= userProfile.profileImage %>" alt="" class="img">
             <p>Name: <%= userProfile.name %></p>
@@ -123,21 +168,29 @@
                     <div class="card">
                         <div>
                             <img src="<%= el.imageUrl %>" alt="" class="img">
-                            <p>Name: <%= el.name %></p>
-                            <p>Description: <%= el.description %></p>
-                            <p>Price : <%= el.price %></p>
+                            <div class="container">
+                                <p>Name: <%= el.name %></p>
+                                <p>Description: <%= el.description %></p>
+                                <p>Price : <%= el.price %></p>
+                            </div>
                         </div>
-                        <form action="/main/<%= userProfile.id %>/buy/<%= el.id %>" method="post">
+                        
+                        <form action="/main/<%= userProfile.id %>/buy/<%= el.id %>" method="post" class="form">
                             <div class="number-input">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button" ></button>
                                 <input class="quantity" min="0" name="quantity" value="1" type="number">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus" type="button"></button>
                               </div>
-                            <button type="submit">Add to Cart</button>
+                            <button type="submit" class="addCart">Add to Cart</button>
                         </form>
                     </div>
                 <%}) %>
             </div>
+        </div>
+
+        <div id="botLeftButton">
+            <a href="/main//<%= userProfile.id %>/checkout"><button class="checkout">Check-out</button></a>
+            
         </div>
     </section>
 </body>
