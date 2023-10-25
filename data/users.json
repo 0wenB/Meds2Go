@@ -1,12 +1,12 @@
 [
     {
         "email": "healthtech@mail.com",
-        "password": "admin123",
+        "password": "$2b$10$F51/Tc/KVbXA7TjpsG./qOlgdnhBHxm18jBuNpnQtN0a3XL1hZ8vy",
         "isAdmin": true
     },
     {
         "email": "christian@mail.com",
-        "password": "beliobat",
+        "password": "$2b$10$F51/Tc/KVbXA7TjpsG./qOfwtYcX.VYwezNmv7aWFaO2ycPkEml96",
         "isAdmin": false
     }
 ]

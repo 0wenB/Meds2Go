@@ -1,4 +1,5 @@
 const { Invoice, Medicine, Profile, User } = require('../models/index.js')
+const bcrypt = require('bcrypt');
 
 
 class HomeController {
@@ -24,8 +25,9 @@ class HomeController {
 
             await User.create({ email, password })
 
-            res.send('masuk registerPost')
+            res.redirect('/login')
         } catch (error) {
+            console.log(error);
             res.send(error)
         }
     }
@@ -38,8 +40,24 @@ class HomeController {
     }
     static async loginPost(req, res) {
         try {
-            res.send('masuk loginPost')
+
+            const { email, password } = req.body
+            // console.log(password);
+            let data = await User.findOne({ where: { email } })
+            // console.log(data);
+            if (data) {
+                const isValidPassword = bcrypt.compareSync(password, data.password);
+                if (isValidPassword) {
+                    res.redirect('/')
+                } else {
+                    const error = 'Invalid Username/Password'
+                    res.redirect(`/login?error=${error}`)
+                }
+
+            }
+
         } catch (error) {
+            console.log(error);
             res.send(error)
         }
     }
