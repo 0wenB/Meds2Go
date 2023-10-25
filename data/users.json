@@ -1,0 +1,12 @@
+[
+    {
+        "email": "healthtech@mail.com",
+        "password": "admin123",
+        "isAdmin": true
+    },
+    {
+        "email": "christian@mail.com",
+        "password": "beliobat",
+        "isAdmin": false
+    }
+]

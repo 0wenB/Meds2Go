@@ -1,0 +1,12 @@
+[
+    {
+        "ProfileId" : 2,
+        "MedicineId" : 1,
+        "quantity": 5
+    },
+    {
+        "ProfileId" : 2,
+        "MedicineId" : 3,
+        "quantity": 10
+    }
+]

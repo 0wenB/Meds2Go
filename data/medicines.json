@@ -1,0 +1,27 @@
+[
+    {
+        "name" : "Paracetamol 500mg PCT",
+        "description" : "PARACETAMOL 500 MG merupakan obat generik yang digunakan untuk meredakan sakit kepala, nyeri dan demam.",
+        "price" : 3000
+    },
+    {
+        "name" : "Alpara",
+        "description" : "ALPARA KAPLET merupakan obat batuk dan pereda flu dengan kandungan Paracetamol, Phenylpropanolamine HCl, Klorfeniramin Maleat, dan Dextromethorphan HBr.",
+        "price" : 8734
+    },
+    {
+        "name" : "Antasida DOEN",
+        "description" : "ANTASIDA DOEN merupakan obat sakit maag dengan kandungan Alumunium Hydroxide dan Magnesium Hydroxide. Kombinasi Alumunium Hydroxide dan Magnesium Hydroxide bekerja menetralkan asam lambung dan menginaktifkan pepsin, sehingga dapat digunakan untuk mengurangi gejala yang berhubungan dengan kelebihan asam lambung, nyeri ulu hati akibat iritasi oleh asam lambung, kembung dan perasaan penuh pada lambung.",
+        "price" : 2500
+    },
+    {
+        "name" : "CHLORPHENAMINE MALEATE",
+        "description" : "PRODUK ORIGINAL 100% DOSIS : Dewasa : 3×1 tablet per hari Anak 6-12 tahun : 3×1/2 tablet per hari",
+        "price" : 4000
+    },
+    {
+        "name" : "LACTULOSE 60 ML",
+        "description" : "Lactulose merupakan obat yang digunakan melalui mulut atau dubur untuk mengobati sembelit, dan mengobati atau mencegah kemungkinan komplikasi penyakit hati (hepatic encephalopathy). Obat ini sebenarnya tidak dapat mengatasi masalah kesehatan yang dialami, hanya membantu meningkatkan status mental pengidapnya.",
+        "price" : 25000
+    }
+]
