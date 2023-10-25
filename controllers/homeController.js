@@ -48,11 +48,15 @@ class HomeController {
             if (data) {
                 const isValidPassword = bcrypt.compareSync(password, data.password);
                 if (isValidPassword) {
-                    res.redirect('/')
+                    res.redirect(`/main/${data.id}`)
                 } else {
-                    const error = 'Invalid Username/Password'
+                    const error = 'Invalid Password'
                     res.redirect(`/login?error=${error}`)
                 }
+
+            } else {
+                const error = 'Invalid Email'
+                res.redirect(`/login?error=${error}`)
 
             }
 
