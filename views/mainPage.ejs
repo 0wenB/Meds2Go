@@ -16,18 +16,90 @@
         .right{
             margin-left: 10px;
             width: 80%;
-            height: 98.5vh;
+            height: auto;
             background-color: blanchedalmond;
             display: flex;
-            flex-wrap: wrap;
+            flex-direction: column;
+            align-items: center;
         }
         .img{
             width: 100%;
             max-width: 400px;
-            height: auto;
+            height: 300px;
+            object-fit: cover;
         }
         .card{
-            width: 400px;
+            margin: 10px;
+            width: 30%;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content:space-between;
+        }
+        .cards{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+        }
+        input[type="number"] {
+        -webkit-appearance: textfield;
+        -moz-appearance: textfield;
+        appearance: textfield;
+        }
+
+        input[type=number]::-webkit-inner-spin-button,
+        input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        }
+
+        .number-input {
+        border: 2px solid #ddd;
+        display: inline-flex;
+        }
+
+        .number-input,
+        .number-input * {
+        box-sizing: border-box;
+        }
+
+        .number-input button {
+        outline:none;
+        -webkit-appearance: none;
+        background-color: transparent;
+        border: none;
+        align-items: center;
+        justify-content: center;
+        width: 2rem;
+        height: 2rem;
+        cursor: pointer;
+        margin: 0;
+        position: relative;
+        }
+
+        .number-input button:before,
+        .number-input button:after {
+        display: inline-block;
+        position: absolute;
+        content: '';
+        width: 1rem;
+        height: 2px;
+        background-color: #212121;
+        transform: translate(-50%, -50%);
+        }
+        .number-input button.plus:after {
+        transform: translate(-50%, -50%) rotate(90deg);
+        }
+
+        .number-input input[type=number] {
+        font-family: sans-serif;
+        max-width: 5rem;
+        padding: .5rem;
+        border: solid #ddd;
+        border-width: 0 2px;
+        font-size: 1.1rem;
+        height: 2rem;
+        font-weight: bold;
+        text-align: center;
         }
     </style>
 </head>
@@ -45,17 +117,25 @@
         </div>
         <div class="right">
             <h1>Medicines</h1>
-            <div class="card">
-                <img src="<%= medicines[0].imageUrl %>" alt="" class="img">
-                <p>Name: <%= medicines[0].name %></p>
-                <p>Description: <%= medicines[0].description %></p>
-                <p>Price : <%= medicines[0].price %></p>
-            </div>
-            <div class="card">
-                <img src="<%= medicines[0].imageUrl %>" alt="" class="img">
-                <p>Name: <%= medicines[0].name %></p>
-                <p>Description: <%= medicines[0].description %></p>
-                <p>Price : <%= medicines[0].price %></p>
+            <div class="cards">
+                <% medicines.forEach(el => { %>
+                    <div class="card">
+                        <div>
+                            <img src="<%= el.imageUrl %>" alt="" class="img">
+                            <p>Name: <%= el.name %></p>
+                            <p>Description: <%= el.description %></p>
+                            <p>Price : <%= el.price %></p>
+                        </div>
+                        <form action="/main/<%= userProfile.id %>/buy/<%= el.id %>" method="post">
+                            <div class="number-input">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button" ></button>
+                                <input class="quantity" min="0" name="quantity" value="1" type="number">
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus" type="button"></button>
+                              </div>
+                            <button type="submit">Add to Cart</button>
+                        </form>
+                    </div>
+                <%}) %>
             </div>
         </div>
     </section>
