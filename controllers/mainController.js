@@ -23,11 +23,11 @@ class MainController {
     }
     static async checkout(req, res) {
         try {
-            console.log('masuk');
+            // console.log('masuk');
             const { idPatient } = req.params
-            let data = await Profile.findAll({ include: { all: true, nested: true }, where: { id: idPatient } })
-            console.log(data);
-            res.render('checkout')
+            let data = await Profile.findOne({ where: { id: idPatient }, include: { all: true, nested: true } })
+            // console.log(data.Invoices);
+            res.render('checkout', { data })
         } catch (error) {
             console.log(error);
             res.send(error)
@@ -35,14 +35,16 @@ class MainController {
     }
     static async checkoutDestroy(req, res) {
         try {
-
+            const { idPatient } = req.params
+            await Invoice.destroy({ where: { ProfileId: idPatient } })
+            res.redirect(`/main/${idPatient}/thankyou`)
         } catch (error) {
             res.send(error)
         }
     }
     static async thankYouPage(req, res) {
         try {
-
+            res.send('berhasil ke thank you page')
         } catch (error) {
             res.send(error)
         }
