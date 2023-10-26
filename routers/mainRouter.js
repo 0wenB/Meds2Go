@@ -2,6 +2,10 @@ const MainController = require('../controllers/mainController')
 
 const router = require('express').Router()
 
+router.use((req,res,next) => {
+    console.log('AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+    next()
+})
 //render main page, tampilan profile user dan find all medicines
 router.get('/:idPatient', MainController.mainPagePatient)
 //post ke invoices idPatient dan idMedicine dari params
