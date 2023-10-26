@@ -33,30 +33,31 @@ class HomeController {
 
             const result = await sequelize.transaction(async (ts) => {
 
-        
+
                 let data = await User.create({ email, password }, { transaction: ts })
                 await Profile.create({ UserId: data.id, name, age, profileImage, gender, balance, address }, { transaction: ts })
-            
-              });
+
+            });
             // console.log(req.body);
 
 
-            res.redirect('/login')  
+            res.redirect('/login')
         } catch (error) {
             if (error.name === "SequelizeValidationError") {
                 let messages = error.errors.map(el => el.message)
-                messages.forEach(el =>{
+                console.log(messages);
+                messages.forEach(el => {
                     switch (el) {
                         case 'Email cannot be Empty':
-                        req.flash('email', 'Email cannot be Empty')
+                            req.flash('email', 'Email cannot be Empty')
                             break;
 
                         case 'Your input must be an Email':
-                        req.flash('email', 'Your input must be an Email')
+                            req.flash('email', 'Your input must be an Email')
                             break;
 
                         case 'Password cannot be Null':
-                        req.flash('pass', 'Password cannot be Null' )
+                            req.flash('pass', 'Password cannot be Null')
                             break;
 
                         case 'Name Cannot be Empty':
@@ -78,7 +79,7 @@ class HomeController {
                         case 'Address Cannot be Empty':
                             req.flash('address', 'Address Cannot be Empty')
                             break;
-                    
+
                         default:
                             break;
                     }
@@ -97,7 +98,9 @@ class HomeController {
     }
     static async loginGet(req, res) {
         try {
-            res.render('login')
+            const emailError = req.flash('email')
+            const passError = req.flash('password')
+            res.render('login', {emailError, passError})
         } catch (error) {
             res.send(error)
         }
@@ -108,7 +111,10 @@ class HomeController {
             const { email, password } = req.body
             // console.log(password);
             let data = await User.findOne({ where: { email } })
-            let profile = await Profile.findOne({ where: { UserId:data.id } })
+            let profile
+            if (data) {
+                profile = await Profile.findOne({ where: { UserId: data.id } })
+            }
             // console.log(data);
             if (data) {
                 const isValidPassword = bcrypt.compareSync(password, data.password);
@@ -118,24 +124,26 @@ class HomeController {
 
                     if (data.isAdmin === true) {
                         res.redirect(`/main/admin`)
-                        
+
                     } else {
                         res.redirect(`/main/${data.id}`)
 
                     }
                 } else {
-                    const error = 'Invalid Password'
-                    res.redirect(`/login?error=${error}`)
+                    req.flash('password', 'Invalid Password')
+
+                    res.redirect(`/login`)   
                 }
 
             } else {
-                const error = 'Invalid Email'
-                res.redirect(`/login?error=${error}`)
+
+                req.flash('email', 'Invalid Email')
+                res.redirect(`/login`)
 
             }
 
         } catch (error) {
-            // console.log(error);
+            console.log(error);
             res.send(error)
         }
     }

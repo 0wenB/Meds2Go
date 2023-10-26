@@ -118,6 +118,7 @@ class MainController {
                 res.redirect('/main/admin/addMedicine')
                 
             } else {
+                console.log(error);
                 res.send(error)
 
             }
