@@ -11,11 +11,11 @@ router.get('/:idPatient', MainController.mainPagePatient)
 //post ke invoices idPatient dan idMedicine dari params
 router.post('/:idPatient/buy/:idMedicine', MainController.postInvoice)
 // render halaman checkout obat
-router.get('/:idPatient/checkout', MainController.mainPagePatient)
+router.get('/:idPatient/checkout', MainController.checkout)
 //post destroy
-router.get('/:idPatient/checkout/complete', MainController.mainPagePatient)
+router.get('/:idPatient/checkout/complete', MainController.checkoutDestroy)
 
-router.get('/:idPatient/thankyou', MainController.mainPagePatient)
+router.get('/:idPatient/thankyou', MainController.thankYouPage)
 
 
 
