@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meds2Go - Main</title>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
         section{
             display: flex;
             flex-wrap: wrap;
@@ -12,14 +16,33 @@
         .left{
             width: 20vw;
             height:inherit;
-            /* background-color: #FFE194; */
-            background-image: linear-gradient(#FFE194, #E8F6EF);
+            background-color: #2cb2cd;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            /* background-image: linear-gradient(to right,#68B984, #CFFDE1); */
+        }
+        .left .img{
+            max-width: 70%;
+            height: auto;
+            border-radius:100%;
+        }
+        .left div{
+            text-align: left;
+            margin-left: 15px;
+        }
+        .left h1{
+            font-size: 40px;
+        }
+        .left p{
+            font-size: 25px;
+            font-weight: 300;
         }
         .right{
             /* margin-left: 2px; */
             width: 75vw;
             height: auto;
-            background-color: #E8F6EF;
+            background-color: #ffffff;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -30,6 +53,7 @@
             height: 300px;
             object-fit: cover;
         }
+        
         .card{
             border-radius: 20px;
             margin: 10px;
@@ -62,7 +86,7 @@
         }
         .addCart{
         transform: translateY(4px);
-        background-color : #31B0D5;
+        background-color : #0b8fae;
         color: white;
         padding: 8px 20px;
         border-radius: 4px;
@@ -110,7 +134,7 @@
         content: '';
         width: 1rem;
         height: 2px;
-        background-color: #212121;
+        background-color: #0b8fae;
         transform: translate(-50%, -50%);
         }
         .number-input button.plus:after {
@@ -129,7 +153,7 @@
         text-align: center;
         }
         .checkout {
-        background-color : #31B0D5;
+        background-color : #0b8fae;
         color: white;
         padding: 15px 20px;
         border-radius: 40px;
@@ -143,34 +167,39 @@
         right: 1rem;
         }
 
-        .left p{
-            margin-left: 15px;
-            font-size: 25px;
-        }
+        
         nav {
             width: 100%;
+            background-color: #3070cc;
+            padding: 10px;
 
         }
-        nav button {
-            background-color: #212121;
+        nav a {
+            font-size: 20px;
+            font-weight: 100;
+            text-decoration:none;
+            padding: 5px;
+            color: #fff;
         }
         
     </style>
 </head>
 <body>
     <nav>
-        <a href="<%= userProfile.id %>"><button>Home</button></a>
-        <a href="<%= userProfile.id %>"><button>Cart</button></a>
-        <a href="<%= userProfile.id %>"><button>Logout</button></a>
+        <a href="/main/<%= userProfile.id %>">Home</a>
+        <a href="/main/<%= userProfile.id %>/checkout">Cart</a>
+        <a href="/logout">Logout</a>
     </nav>
     <section>
         <div class="left container">
-            <h1>Profile</h1>
             <img src="<%= userProfile.profileImage %>" alt="" class="img">
-            <p>Name: <%= userProfile.name %></p>
-            <p>Age: <%= userProfile.age %></p>
-            <p>Gender: <%= userProfile.gender %></p>
-            <p>Balance: <%= userProfile.balance %></p>
+            <div>
+                <h1><%= userProfile.name %></h1>
+                <p>Age: <%= userProfile.age %></p>
+                <p>Gender: <%= userProfile.gender %></p>
+                <p>Balance: <%= userProfile.balance %></p>
+
+            </div>
 
         </div>
         
