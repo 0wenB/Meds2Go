@@ -5,19 +5,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
-    <h1>Login</h1>
-    <form action="/login" method="post">
-        <label for="email">Email</label>
-        <input type="text" name="email" id="email">
-        <br>
-        <label for="password">Password</label>
-        <input type="password" name="password" id="password">
-        <br>
-        <button type="submit">Login</button>
-    </form>
+    <nav style="padding: 0.5rem 0;">
+        <a href="/ %>" class="logoContainer">
+            <img src="/assets/logo.png" alt="" class="logo">
+            <p class="logoText">Meds2Go</p>
+        </a>
+        <div class="navRight">
+            <a class="capsule" href="/login">Login</a>
+            <a class="capsule" href="/register">Register</a>
+        </div>
+    </nav>
+    <div class="container">
+        <h1>Login</h1>
+        <form action="/login" method="post">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" name="email" id="email" class="form-control">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" name="password" id="password" class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
 </body>
 
 </html>
