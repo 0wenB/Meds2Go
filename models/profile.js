@@ -9,6 +9,15 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+
+    static async deductBalance(ProfileId,total){
+      let balance = await sequelize.models.Profile.decrement('balance', {
+        by: total,
+        where: {
+          id:ProfileId
+        }
+      })
+    }
     static associate(models) {
       Profile.belongsTo(models.User, { foreignKey: 'UserId' })
       Profile.hasMany(models.Invoice, { foreignKey: 'ProfileId' })

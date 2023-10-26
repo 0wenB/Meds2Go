@@ -1,13 +1,27 @@
-const { Invoice, Medicine, Profile, User } = require('../models')
-
+const { Op } = require('sequelize');
+const { Invoice, Medicine, Profile, User } = require('../models');
+const formatNumber = require('../helpers/formatNumber');
 class MainController {
 
 
     static async mainPagePatient(req, res) {
         try {
+            let option = {}
+            if (req.query.filter) {
+                option.where = {
+                    category: req.query.filter
+                }
+            }
+            if (req.query.search) {
+                option.where = {
+                    name: {
+                        [Op.iLike]:`%${req.query.search}%`
+                    }
+                }
+            }
             const userProfile = await Profile.findByPk(req.params.idPatient)
-            const medicines = await Medicine.findAll()
-            res.render('mainPage', { userProfile, medicines })
+            const medicines = await Medicine.findAll(option)
+            res.render('mainPage', { userProfile, medicines, formatNumber })
         } catch (error) {
             console.log(error);
             res.send(error)
@@ -27,7 +41,7 @@ class MainController {
             const { idPatient } = req.params
             let data = await Profile.findOne({ where: { id: idPatient }, include: { all: true, nested: true } })
             // console.log(data.Invoices);
-            res.render('checkout', { data })
+            res.render('checkout', { data, formatNumber })
         } catch (error) {
             console.log(error);
             res.send(error)
@@ -35,8 +49,12 @@ class MainController {
     }
     static async checkoutDestroy(req, res) {
         try {
+            if (req.query.total) {
+                await Profile.deductBalance(req.params.idPatient,req.query.total)
+            }
             const { idPatient } = req.params
             await Invoice.destroy({ where: { ProfileId: idPatient } })
+            
             res.redirect(`/main/${idPatient}/thankyou`)
         } catch (error) {
             res.send(error)

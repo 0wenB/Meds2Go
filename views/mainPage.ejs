@@ -213,6 +213,8 @@
         }
         .filter{
             margin-left: 15px;
+            display: flex;
+            justify-content: space-between;
         }
         .filter button{
             padding: 10px;
@@ -221,6 +223,12 @@
             border-style: solid;
             border-color:white;
             border-width: 2px;
+        }
+        input[type=text]{
+            border-style: solid;
+            border-color:#2cb2cd;
+            border-width: 2px;
+            padding: 9px;
         }
     </style>
 </head>
@@ -253,9 +261,19 @@
         <div class="right">
             <h1 style="text-align: center;">Medicines</h1>
             <div class="filter">
-                <h1>Filter:</h1>
-                <a href="/main<%= userProfile.id %>?filter=Dewasa"><button>Dewasa</button></a>
-                <a href="/main<%= userProfile.id %>?filter=Anak"><button>Anak - Anak</button></a>
+                <div>
+                    <form>
+                        <input type="text" name="search" id="">
+                        <button type="submit">Search</button>
+                    </form>
+
+                </div>
+                <div>
+                    <a href="/main/<%= userProfile.id %>"><button>Semua</button></a>
+                    <a href="/main/<%= userProfile.id %>?filter=Dewasa"><button>Adult</button></a>
+                    <a href="/main/<%= userProfile.id %>?filter=Anak"><button>Kids</button></a>
+
+                </div>
             </div>
             <div class="cards">
                 <% medicines.forEach(el => { %>
@@ -266,7 +284,7 @@
 
                             <div class="container">
                                 <h3><%= el.name %></h3>
-                                <p>Price : <%= el.price %></p>
+                                <p>Price : <%= formatNumber(el.price) %></p>
                                 <p>Description: <%= el.description %></p>
                                 
                             </div>
