@@ -6,17 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
 
 </head>
 
 <body>
     <%- include('./partials/homeNavbar.ejs') %>
-        <marquee direction="right" height="30px" style="background-color: rgb(70, 135, 185);color: white;">
-            GRATIS ONGKIR untuk pengiriman ke JABODETABEK!
-        </marquee>
-        <a href="/register"><button>Register</button></a>
-        <a href="/login"><button>Login</button></a>
+        <div id="showcase">
+            <marquee direction="right" height="30px" style="background-color: rgb(70, 135, 185);color: white;">
+                GRATIS ONGKIR untuk pengiriman ke JABODETABEK!
+            </marquee>
+            <div style="position: absolute;top:30%;left: 10%;display: flex;flex-direction: column;">
+                <h1 style="margin:0; font-size: 5rem; font-weight: 600; color: white;">Belanja Obat</h1>
+                <h1 style="margin: 0; font-size: 5rem; font-weight: 600; color: white;">NO RIBET!</h1>
+                <a href="/register" class="btn btn-primary" style="text-decoration: none;"><button
+                        style="padding: 1rem;border-radius: 35%; border: none;color: #3070cc; font-weight: bold;">Register</button></a>
+            </div>
+        </div>
+        <!-- <a href="/register"><button>Register</button></a>
+            <a href="/login"><button>Login</button></a> -->
+        </div>
 
 </body>
 
