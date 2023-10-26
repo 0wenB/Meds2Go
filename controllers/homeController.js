@@ -1,7 +1,6 @@
 const { Invoice, Medicine, Profile, User } = require('../models/index.js')
 const bcrypt = require('bcrypt');
 
-
 class HomeController {
 
     static async home(req, res) {
@@ -48,6 +47,7 @@ class HomeController {
             if (data) {
                 const isValidPassword = bcrypt.compareSync(password, data.password);
                 if (isValidPassword) {
+                    req.session.userId = data.id
                     res.redirect(`/main/${data.id}`)
                 } else {
                     const error = 'Invalid Password'

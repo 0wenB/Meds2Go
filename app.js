@@ -6,17 +6,16 @@ const session = require('express-session')
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended : true}))
+
 app.use(session({
   secret: 'beliObatMurahCepatTanpaResepDokter',
   resave: false,
-  saveUninitialized: true,
+  saveUninitialized: false,
   cookie: { 
-    secure: true,
-    sameSite: true // untuk security dari apache helicopter attack
+    secure: false,
+    // sameSite: true // untuk security dari apache helicopter attack
   }
 }))
-
-
 
 app.use(router)
 

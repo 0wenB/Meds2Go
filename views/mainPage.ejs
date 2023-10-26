@@ -12,10 +12,11 @@
         .left{
             width: 20vw;
             height:inherit;
-            background-color: #FFE194;
+            /* background-color: #FFE194; */
+            background-image: linear-gradient(#FFE194, #E8F6EF);
         }
         .right{
-            margin-left: 10px;
+            /* margin-left: 2px; */
             width: 75vw;
             height: auto;
             background-color: #E8F6EF;
@@ -33,7 +34,7 @@
             border-radius: 20px;
             margin: 10px;
             width: 30%;
-            height: 600px;
+            height: inherit;
             display: flex;
             flex-direction: column;
             justify-content:space-between;
@@ -146,10 +147,22 @@
             margin-left: 15px;
             font-size: 25px;
         }
+        nav {
+            width: 100%;
+
+        }
+        nav button {
+            background-color: #212121;
+        }
         
     </style>
 </head>
 <body>
+    <nav>
+        <a href="<%= userProfile.id %>"><button>Home</button></a>
+        <a href="<%= userProfile.id %>"><button>Cart</button></a>
+        <a href="<%= userProfile.id %>"><button>Logout</button></a>
+    </nav>
     <section>
         <div class="left container">
             <h1>Profile</h1>
@@ -170,8 +183,8 @@
                             <img src="<%= el.imageUrl %>" alt="" class="img">
                             <div class="container">
                                 <p>Name: <%= el.name %></p>
-                                <p>Description: <%= el.description %></p>
                                 <p>Price : <%= el.price %></p>
+                                <p>Description: <%= el.description %></p>
                             </div>
                         </div>
                         
@@ -189,7 +202,7 @@
         </div>
 
         <div id="botLeftButton">
-            <a href="/main//<%= userProfile.id %>/checkout"><button class="checkout">Check-out</button></a>
+            <a href="/main/<%= userProfile.id %>/checkout"><button class="checkout">Check-out</button></a>
             
         </div>
     </section>
