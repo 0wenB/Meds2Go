@@ -11,6 +11,7 @@ router.post('/register', HomeController.registerPost)
 
 router.get('/login', HomeController.loginGet)
 router.post('/login', HomeController.loginPost)
+router.get('/logout', HomeController.logout)
 
 router.use('/main', mainRouter)
 

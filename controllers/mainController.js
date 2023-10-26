@@ -44,7 +44,10 @@ class MainController {
     }
     static async thankYouPage(req, res) {
         try {
-            res.send('berhasil ke thank you page')
+            const { idPatient } = req.params
+            let data = await Profile.findByPk(idPatient)
+            // console.log(data);
+            res.render('thankyou', { data })
         } catch (error) {
             res.send(error)
         }
