@@ -4,7 +4,6 @@ const router = require('express').Router()
 const isLoggedIn = 
 
 router.use((req,res,next) => {
-    console.log(req.session);
     if (req.session.userId) {
         next()
     } else {

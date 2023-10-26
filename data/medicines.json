@@ -3,30 +3,39 @@
         "name" : "Paracetamol 500mg PCT",
         "description" : "PARACETAMOL 500 MG merupakan obat generik yang digunakan untuk meredakan sakit kepala, nyeri dan demam.",
         "price" : 3000,
-        "imageUrl": "https://images.tokopedia.net/img/cache/900/hDjmkQ/2021/10/21/50351243-1fd5-4a56-b0d5-ecef4c0d9d58.jpg"
+        "imageUrl": "https://images.tokopedia.net/img/cache/900/hDjmkQ/2021/10/21/50351243-1fd5-4a56-b0d5-ecef4c0d9d58.jpg",
+        "category" : "Dewasa"
     },
     {
         "name" : "Alpara",
         "description" : "ALPARA KAPLET merupakan obat batuk dan pereda flu dengan kandungan Paracetamol, Phenylpropanolamine HCl, Klorfeniramin Maleat, dan Dextromethorphan HBr.",
         "price" : 8734,
-        "imageUrl" : "https://images.tokopedia.net/img/cache/900/hDjmkQ/2023/6/15/4d66bea5-2b06-4a6b-9fb2-a94dd313b3fe.jpg"
+        "imageUrl" : "https://images.tokopedia.net/img/cache/900/hDjmkQ/2023/6/15/4d66bea5-2b06-4a6b-9fb2-a94dd313b3fe.jpg",
+        "category" : "Dewasa"
+
     },
     {
         "name" : "Antasida DOEN",
         "description" : "ANTASIDA DOEN merupakan obat sakit maag dengan kandungan Alumunium Hydroxide dan Magnesium Hydroxide. Kombinasi Alumunium Hydroxide dan Magnesium Hydroxide bekerja menetralkan asam lambung dan menginaktifkan pepsin, sehingga dapat digunakan untuk mengurangi gejala yang berhubungan dengan kelebihan asam lambung, nyeri ulu hati akibat iritasi oleh asam lambung, kembung dan perasaan penuh pada lambung.",
         "price" : 2500,
-        "imageUrl" : "https://images.tokopedia.net/img/cache/900/hDjmkQ/2021/10/21/d2697bc8-a0f1-494c-bdd0-e5ba0285c7ac.jpg"
+        "imageUrl" : "https://images.tokopedia.net/img/cache/900/hDjmkQ/2021/10/21/d2697bc8-a0f1-494c-bdd0-e5ba0285c7ac.jpg",
+        "category" : "Dewasa"
+
     },
     {
         "name" : "CHLORPHENAMINE MALEATE",
         "description" : "PRODUK ORIGINAL 100% DOSIS : Dewasa : 3×1 tablet per hari Anak 6-12 tahun : 3×1/2 tablet per hari",
         "price" : 4000,
-        "imageUrl" : "https://images.tokopedia.net/img/cache/900/VqbcmM/2022/8/6/c670a8af-f79a-4dc9-a4bc-dc109757946d.jpg"
+        "imageUrl" : "https://images.tokopedia.net/img/cache/900/VqbcmM/2022/8/6/c670a8af-f79a-4dc9-a4bc-dc109757946d.jpg",
+        "category" : "Dewasa"
+
     },
     {
         "name" : "LACTULOSE 60 ML",
         "description" : "Lactulose merupakan obat yang digunakan melalui mulut atau dubur untuk mengobati sembelit, dan mengobati atau mencegah kemungkinan komplikasi penyakit hati (hepatic encephalopathy). Obat ini sebenarnya tidak dapat mengatasi masalah kesehatan yang dialami, hanya membantu meningkatkan status mental pengidapnya.",
         "price" : 25000,
-        "imageUrl" : "https://images.tokopedia.net/img/cache/900/VqbcmM/2023/9/6/e11dc16b-4fdc-42ba-8ee2-ce422d746fa3.png"
+        "imageUrl" : "https://images.tokopedia.net/img/cache/900/VqbcmM/2023/9/6/e11dc16b-4fdc-42ba-8ee2-ce422d746fa3.png",
+        "category" : "Dewasa"
+
     }
 ]

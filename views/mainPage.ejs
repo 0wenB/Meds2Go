@@ -8,6 +8,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
         body {
             font-family: 'Poppins', sans-serif;
+            margin: 0;
         }
         section{
             display: flex;
@@ -45,7 +46,6 @@
             background-color: #ffffff;
             display: flex;
             flex-direction: column;
-            align-items: center;
         }
         .img{
             width: 100%;
@@ -56,7 +56,7 @@
         
         .card{
             border-radius: 20px;
-            margin: 10px;
+            margin: 1rem;
             width: 30%;
             height: inherit;
             display: flex;
@@ -73,20 +73,21 @@
             box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
             }
         .cards{
+            /* margin-left: 2%; */
             display: flex;
             flex-direction: row;
             flex-wrap: wrap;
             
         }
         .container {
-            padding: 2px 16px;
+            padding: 20px 16px 0 16px;
         }
         .form{
             margin-bottom: 10px;
         }
         .addCart{
         transform: translateY(4px);
-        background-color : #0b8fae;
+        background-color : #2cb2cd;
         color: white;
         padding: 8px 20px;
         border-radius: 4px;
@@ -153,7 +154,7 @@
         text-align: center;
         }
         .checkout {
-        background-color : #0b8fae;
+        background-color : #2cb2cd;
         color: white;
         padding: 15px 20px;
         border-radius: 40px;
@@ -171,24 +172,70 @@
         nav {
             width: 100%;
             background-color: #3070cc;
-            padding: 10px;
-
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         nav a {
+        
             font-size: 20px;
             font-weight: 100;
             text-decoration:none;
-            padding: 5px;
             color: #fff;
         }
-        
+        .logoContainer{
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+        .logo{
+            height: 50px;
+            width: 50px;
+        }
+        .logoText{
+            font-weight: 600;
+        }
+        .navRight{
+            margin-right: 20px;
+        }
+        .capsule{
+            margin: 0 6px;
+            padding: 0 15px;
+            background-color: #2cb2cd;
+            border-style: solid;
+            border-color:white;
+            border-width: 2px;
+            border-radius: 15px;
+        }
+        hr{
+            border-top: 3px solid #2cb2cd
+        }
+        .filter{
+            margin-left: 15px;
+        }
+        .filter button{
+            padding: 10px;
+            color: white;
+            background-color: #2cb2cd;
+            border-style: solid;
+            border-color:white;
+            border-width: 2px;
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="/main/<%= userProfile.id %>">Home</a>
-        <a href="/main/<%= userProfile.id %>/checkout">Cart</a>
-        <a href="/logout">Logout</a>
+        <a href="/main/<%= userProfile.id %>" class="logoContainer">
+        <img src="/assets/logo.png" alt="" class="logo">
+        <p class="logoText">Meds2Go</p>
+        </a>
+        <div class="navRight">
+            <a class="capsule" href="/main/<%= userProfile.id %>">Home</a>
+            <a class="capsule" href="/main/<%= userProfile.id %>/checkout">Cart</a>
+            <a class="capsule" href="/logout">Logout</a>
+
+        </div>
     </nav>
     <section>
         <div class="left container">
@@ -204,19 +251,26 @@
         </div>
         
         <div class="right">
-            <h1>Medicines</h1>
+            <h1 style="text-align: center;">Medicines</h1>
+            <div class="filter">
+                <h1>Filter:</h1>
+                <a href="/main<%= userProfile.id %>?filter=Dewasa"><button>Dewasa</button></a>
+                <a href="/main<%= userProfile.id %>?filter=Anak"><button>Anak - Anak</button></a>
+            </div>
             <div class="cards">
                 <% medicines.forEach(el => { %>
                     <div class="card">
                         <div>
                             <img src="<%= el.imageUrl %>" alt="" class="img">
+                            <hr>
+
                             <div class="container">
-                                <p>Name: <%= el.name %></p>
+                                <h3><%= el.name %></h3>
                                 <p>Price : <%= el.price %></p>
                                 <p>Description: <%= el.description %></p>
+                                
                             </div>
                         </div>
-                        
                         <form action="/main/<%= userProfile.id %>/buy/<%= el.id %>" method="post" class="form">
                             <div class="number-input">
                                 <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button" ></button>
