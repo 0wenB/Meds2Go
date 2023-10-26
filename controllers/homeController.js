@@ -20,10 +20,10 @@ class HomeController {
     static async registerPost(req, res) {
         try {
             // console.log(req.body);
-            const { email, password } = req.body
+            const { email, password, name, age, profileImage, gender, balance, address } = req.body
 
-            await User.create({ email, password })
-
+            let data = await User.create({ email, password })
+            let dataProfile = await Profile.create({ UserId: data.id, name, age, profileImage, gender, balance, address })
             res.redirect('/login')
         } catch (error) {
             console.log(error);
