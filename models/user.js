@@ -30,6 +30,10 @@ module.exports = (sequelize, DataTypes) => {
       validate:{
         notNull:{msg: 'Password cannot be Null'},
         notEmpty:{msg: 'Password cannot be Null'},
+        len: {
+          args: [8,40],
+          msg: 'Password must be at least 8 characters and no more than 40 characters long'
+        }
 
       }
     },

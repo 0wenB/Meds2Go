@@ -18,9 +18,10 @@ class HomeController {
             const profileImageError = req.flash('profileImage')
             const balanceError = req.flash('balance')
             const addressError = req.flash('address')
+            const emailUnique = req.flash('unique')
 
             
-            res.render('register', {emailError, passError, nameError, ageError, profileImageError, balanceError, addressError})
+            res.render('register', {emailError, passError, nameError, ageError, profileImageError, balanceError, addressError, emailUnique})
         } catch (error) {
             console.log(error);
             res.send(error)
@@ -44,7 +45,6 @@ class HomeController {
         } catch (error) {
             if (error.name === "SequelizeValidationError") {
                 let messages = error.errors.map(el => el.message)
-                console.log(messages);
                 messages.forEach(el =>{
                     switch (el) {
                         case 'Email cannot be Empty':
@@ -85,6 +85,10 @@ class HomeController {
                 })
                 res.redirect('/register')
                 
+            } else if (error.name === "SequelizeUniqueConstraintError") {
+                req.flash('unique', `Email: ${error.errors[0].instance.email} is already registered`)
+                res.redirect('/register')
+
             } else {
                 res.send(error)
 

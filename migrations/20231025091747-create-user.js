@@ -10,7 +10,8 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        unique: 'actions_unique',
       },
       password: {
         type: Sequelize.STRING
@@ -25,6 +26,12 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
+      }
+    }, {
+      uniqueKeys: {
+          actions_unique: {
+              fields: ['email']
+          }
       }
     });
   },

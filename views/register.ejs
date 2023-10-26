@@ -32,6 +32,11 @@
                     </p>
                     <%} %>
 
+                    <% if (emailUnique.length>0) { %>
+                    <p style="color:red;"> Error: <%= emailUnique %> </p>
+                        
+                    <%} %>
+
             </div>
             <div class="col-md-6">
                 <label for="password" class="form-label">Password</label>
