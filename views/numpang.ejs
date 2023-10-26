@@ -1,0 +1,67 @@
+<form action="/register" method="post">
+    <label for="email">Email</label>
+    <input type="text" name="email" id="email">
+    <% if (emailError.length> 0) { %>
+        <h1>Error: <%= emailError %>
+        </h1>
+
+        <%} %>
+            <br>
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password">
+            <% if (passError.length> 0) { %>
+                <h1>Error: <%= passError %>
+                </h1>
+
+                <%} %>
+                    <br>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name">
+                    <% if (nameError.length> 0) { %>
+                        <h1>Error: <%= nameError %>
+                        </h1>
+
+                        <%} %>
+                            <br>
+                            <label for="age">Age</label>
+                            <input type="number" name="age" id="age">
+                            <% if (ageError.length> 0) { %>
+                                <h1>Error: <%= ageError %>
+                                </h1>
+
+                                <%} %>
+                                    <br>
+                                    <label for="profileImage">Profile Image</label>
+                                    <input type="text" name="profileImage" id="profileImage">
+                                    <% if (profileImageError.length> 0) { %>
+                                        <h1>Error: <%= profileImageError %>
+                                        </h1>
+
+                                        <%} %>
+                                            <br>
+                                            <label for="gender">Gender</label>
+                                            <select name="gender" id="">
+                                                <option value="Male">Male</option>
+                                                <option value="Female">Female</option>
+                                            </select>
+
+                                            <br>
+                                            <label for="balance">Balance</label>
+                                            <input type="number" name="balance" id="balance">
+                                            <% if (balanceError.length> 0) { %>
+                                                <h1>Error: <%= balanceError %>
+                                                </h1>
+
+                                                <%} %>
+                                                    <br>
+                                                    <label for="address">Address</label>
+                                                    <input type="text" name="address" id="address">
+                                                    <% if (addressError.length> 0) { %>
+                                                        <h1>Error: <%= addressError %>
+                                                        </h1>
+
+                                                        <%} %>
+                                                            <br>
+                                                            <button type="submit">Register</button>
+
+</form>

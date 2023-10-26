@@ -1,242 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meds2Go - Main</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
-        body {
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-        }
-        section{
-            display: flex;
-            flex-wrap: wrap;
-        }
-        .left{
-            width: 20vw;
-            height:inherit;
-            background-color: #2cb2cd;
-            color: #ffffff;
-            text-align: center;
-            padding: 20px;
-            /* background-image: linear-gradient(to right,#68B984, #CFFDE1); */
-        }
-        .left .img{
-            max-width: 70%;
-            height: auto;
-            border-radius:100%;
-        }
-        .left div{
-            text-align: left;
-            margin-left: 15px;
-        }
-        .left h1{
-            font-size: 40px;
-        }
-        .left p{
-            font-size: 25px;
-            font-weight: 300;
-        }
-        .right{
-            /* margin-left: 2px; */
-            width: 75vw;
-            height: auto;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-        }
-        .img{
-            width: 100%;
-            max-width: 100%;
-            height: 300px;
-            object-fit: cover;
-        }
-        
-        .card{
-            border-radius: 20px;
-            margin: 1rem;
-            width: 30%;
-            height: inherit;
-            display: flex;
-            flex-direction: column;
-            justify-content:space-between;
-            align-items: center;
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-        }
-        .card .img{
-            border-radius: 20px 20px 0 0;
-        }
-        .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-            }
-        .cards{
-            /* margin-left: 2%; */
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
-            
-        }
-        .container {
-            padding: 20px 16px 0 16px;
-        }
-        .form{
-            margin-bottom: 10px;
-        }
-        .addCart{
-        transform: translateY(4px);
-        background-color : #2cb2cd;
-        color: white;
-        padding: 8px 20px;
-        border-radius: 4px;
-        border-color: #ffffff;
-        }
-        input[type="number"] {
-        -webkit-appearance: textfield;
-        -moz-appearance: textfield;
-        appearance: textfield;
-        }
+    <link rel="stylesheet" href="style.css">
 
-        input[type=number]::-webkit-inner-spin-button,
-        input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        }
-
-        .number-input {
-        border: 2px solid #ddd;
-        display: inline-flex;
-        }
-
-        .number-input,
-        .number-input * {
-        box-sizing: border-box;
-        }
-
-        .number-input button {
-        outline:none;
-        /* -webkit-appearance: nonse; */
-        background-color: transparent;
-        border: none;
-        align-items: center;
-        justify-content: center;
-        width: 2rem;
-        height: 2rem;
-        cursor: pointer;
-        margin: 0;
-        position: relative;
-        }
-
-        .number-input button:before,
-        .number-input button:after {
-        display: inline-block;
-        position: absolute;
-        content: '';
-        width: 1rem;
-        height: 2px;
-        background-color: #0b8fae;
-        transform: translate(-50%, -50%);
-        }
-        .number-input button.plus:after {
-        transform: translate(-50%, -50%) rotate(90deg);
-        }
-
-        .number-input input[type=number] {
-        font-family: sans-serif;
-        max-width: 5rem;
-        padding: .5rem;
-        border: solid #ddd;
-        border-width: 0 2px;
-        font-size: 1.1rem;
-        height: 2rem;
-        font-weight: bold;
-        text-align: center;
-        }
-        .checkout {
-        background-color : #2cb2cd;
-        color: white;
-        padding: 15px 20px;
-        border-radius: 40px;
-        border-color: #ffffff;
-        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-        }
-
-        #botLeftButton {
-        position: fixed;
-        bottom: 1rem;
-        right: 1rem;
-        }
-
-        
-        nav {
-            width: 100%;
-            background-color: #3070cc;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        nav a {
-        
-            font-size: 20px;
-            font-weight: 100;
-            text-decoration:none;
-            color: #fff;
-        }
-        .logoContainer{
-            margin-left: 20px;
-            display: flex;
-            align-items: center;
-            flex-direction: row;
-        }
-        .logo{
-            height: 50px;
-            width: 50px;
-        }
-        .logoText{
-            font-weight: 600;
-        }
-        .navRight{
-            margin-right: 20px;
-        }
-        .capsule{
-            margin: 0 6px;
-            padding: 0 15px;
-            background-color: #2cb2cd;
-            border-style: solid;
-            border-color:white;
-            border-width: 2px;
-            border-radius: 15px;
-        }
-        hr{
-            border-top: 3px solid #2cb2cd
-        }
-        .filter{
-            margin-left: 15px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .filter button{
-            padding: 10px;
-            color: white;
-            background-color: #2cb2cd;
-            border-style: solid;
-            border-color:white;
-            border-width: 2px;
-        }
-        input[type=text]{
-            border-style: solid;
-            border-color:#2cb2cd;
-            border-width: 2px;
-            padding: 9px;
-        }
-    </style>
 </head>
+
 <body>
     <nav>
         <a href="/main/<%= userProfile.id %>" class="logoContainer">
-        <img src="/assets/logo.png" alt="" class="logo">
-        <p class="logoText">Meds2Go</p>
+            <img src="/assets/logo.png" alt="" class="logo">
+            <p class="logoText">Meds2Go</p>
         </a>
         <div class="navRight">
             <a class="capsule" href="/main/<%= userProfile.id %>">Home</a>
@@ -249,15 +26,20 @@
         <div class="left container">
             <img src="<%= userProfile.profileImage %>" alt="" class="img">
             <div>
-                <h1><%= userProfile.titledName %></h1>
-                <p>Age: <%= userProfile.age %></p>
-                <p>Gender: <%= userProfile.gender %></p>
-                <p>Balance: <%= formatNumber(userProfile.balance) %></p>
+                <h1>
+                    <%= userProfile.titledName %>
+                </h1>
+                <p>Age: <%= userProfile.age %>
+                </p>
+                <p>Gender: <%= userProfile.gender %>
+                </p>
+                <p>Balance: <%= formatNumber(userProfile.balance) %>
+                </p>
 
             </div>
 
         </div>
-        
+
         <div class="right">
             <h1 style="text-align: center;">Medicines</h1>
             <div class="filter">
@@ -276,36 +58,43 @@
                 </div>
             </div>
             <div class="cards">
-                <% medicines.forEach(el => { %>
+                <% medicines.forEach(el=> { %>
                     <div class="card">
                         <div>
                             <img src="<%= el.imageUrl %>" alt="" class="img">
                             <hr>
 
                             <div class="container">
-                                <h3><%= el.name %></h3>
-                                <p>Price : <%= formatNumber(el.price) %></p>
-                                <p>Description: <%= el.description %></p>
-                                
+                                <h3>
+                                    <%= el.name %>
+                                </h3>
+                                <p>Price : <%= formatNumber(el.price) %>
+                                </p>
+                                <p>Description: <%= el.description %>
+                                </p>
+
                             </div>
                         </div>
                         <form action="/main/<%= userProfile.id %>/buy/<%= el.id %>" method="post" class="form">
                             <div class="number-input">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button" ></button>
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+                                    type="button"></button>
                                 <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus" type="button"></button>
-                              </div>
+                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+                                    class="plus" type="button"></button>
+                            </div>
                             <button type="submit" class="addCart">Add to Cart</button>
                         </form>
                     </div>
-                <%}) %>
+                    <%}) %>
             </div>
         </div>
 
         <div id="botLeftButton">
             <a href="/main/<%= userProfile.id %>/checkout"><button class="checkout">Check-out</button></a>
-            
+
         </div>
     </section>
 </body>
+
 </html>
