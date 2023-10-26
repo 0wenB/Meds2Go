@@ -14,11 +14,46 @@ module.exports = (sequelize, DataTypes) => {
     }
   }
   Medicine.init({
-    name: DataTypes.STRING,
-    description: DataTypes.TEXT,
-    price: DataTypes.INTEGER,
-    imageUrl:DataTypes.STRING,
-    category: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate: {
+        notEmpty:{msg: 'Name cannot be empty'},
+        notNull: {msg: 'Name cannot be null'}
+      }
+    },
+    description: {
+      type: DataTypes.TEXT,
+      allowNull:false,
+      validate: {
+        notEmpty:{msg: 'Description cannot be empty'},
+        notNull: {msg: 'Description cannot be null'}
+      }
+    },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull:false,
+      validate: {
+        notEmpty:{msg: 'Price cannot be empty'},
+        notNull: {msg: 'Price cannot be null'}
+      }
+    },
+    imageUrl:{
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate: {
+        notEmpty:{msg: 'Image Url/Link cannot be empty'},
+        notNull: {msg: 'Image Url/Link cannot be null'}
+      }
+    },
+    category: {
+      type: DataTypes.STRING,
+      allowNull:false,
+      validate: {
+        notEmpty:{msg: 'Category cannot be empty'},
+        notNull: {msg: 'Category cannot be null'}
+      }
+    }
   }, {
     sequelize,
     modelName: 'Medicine',

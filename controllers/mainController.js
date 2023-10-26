@@ -71,7 +71,11 @@ class MainController {
 
     static async renderAddMedicine(req,res){
         try {
-            res.render('addMedicineForm')
+            const nameError = req.flash('name')
+            const descriptionError = req.flash('description')
+            const priceError = req.flash('price')
+            const imageUrlError = req.flash('imageUrl')
+            res.render('addMedicineForm', {nameError, descriptionError, priceError, imageUrlError})
         } catch (error) {
             res.send(error)
             
@@ -80,20 +84,55 @@ class MainController {
 
     static async AddMedicine(req,res){
         try {   
-            console.log(req.body);
             const {name, description, price, imageUrl, category} = req.body
             let addMedicine = await Medicine.create({name, description, price, imageUrl, category})
             res.redirect('/main/admin')
         } catch (error) {
-            res.send(error)
+            if (error.name === "SequelizeValidationError") {
+                let messages = error.errors.map(el => el.message)
+                console.log(messages);
+                messages.forEach(el =>{
+                    switch (el) {
+                        case 'Name cannot be empty':
+                        req.flash('name', 'Name cannot be empty')
+                            break;
+
+                        case 'Description cannot be empty':
+                        req.flash('description', 'Description cannot be empty')
+                            break;
+
+                        case 'Price cannot be empty':
+                        req.flash('price', 'Price cannot be empty' )
+                            break;
+
+                        case 'Image Url/Link cannot be empty':
+                            req.flash('imageUrl', 'Image Url/Link cannot be empty')
+                            break;
+
+                        
+                    
+                        default:
+                            break;
+                    }
+                })
+                res.redirect('/main/admin/addMedicine')
+                
+            } else {
+                res.send(error)
+
+            }
             
         }
     }
 
     static async renderEditMedicine(req,res){
         try {
+            const nameError = req.flash('name')
+            const descriptionError = req.flash('description')
+            const priceError = req.flash('price')
+            const imageUrlError = req.flash('imageUrl')
             const medicine = await Medicine.findByPk(req.params.medId)
-            res.render('editMedicine', {medicine})
+            res.render('editMedicine', {medicine, nameError, descriptionError, priceError, imageUrlError})
         } catch (error) {
             res.send(error)
             
@@ -103,11 +142,45 @@ class MainController {
     static async editMedicine(req,res){
         try {
             console.log(req.body);
-            const {name, description, price, imageUrl, category} = req.body
+            let {name, description, price, imageUrl, category} = req.body
+            price = Number(price)
             let updateMedicine = await Medicine.update({name, description, price, imageUrl, category}, {where:{id:req.params.medId}})
             res.redirect('/main/admin')
         } catch (error) {
-            res.send(error)
+            if (error.name === "SequelizeValidationError") {
+                let messages = error.errors.map(el => el.message)
+                console.log(messages);
+                messages.forEach(el =>{
+                    switch (el) {
+                        case 'Name cannot be empty':
+                        req.flash('name', 'Name cannot be empty')
+                            break;
+
+                        case 'Description cannot be empty':
+                        req.flash('description', 'Description cannot be empty')
+                            break;
+
+                        case 'Price cannot be empty':
+                        req.flash('price', 'Price cannot be empty' )
+                            break;
+
+                        case 'Image Url/Link cannot be empty':
+                            req.flash('imageUrl', 'Image Url/Link cannot be empty')
+                            break;
+
+                        
+                    
+                        default:
+                            break;
+                    }
+                })
+                res.redirect(`/main/admin/edit/${req.params.medId}`)
+                
+            } else {
+                console.log(error);
+                res.send(error)
+
+            }
             
         }
     }
@@ -151,7 +224,7 @@ class MainController {
             const { idPatient } = req.params
             let data = await Profile.findByPk(req.session.profileId)
             // console.log(data);
-            res.render('thankyou', { data })
+            res.render('thankyou', { data, id:idPatient })
         } catch (error) {
             res.send(error)
         }

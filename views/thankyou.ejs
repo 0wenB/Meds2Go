@@ -5,12 +5,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        body{
+            margin: 0;
+            text-align: center;
+        }
+        marquee{
+            border-bottom: 25px dashed rgb(48, 48, 48);
+        }
+    </style>
 </head>
 
 <body>
+    <nav>
+        <a href="/main/<%= id %>" class="logoContainer">
+        <img src="/assets/logo.png" alt="" class="logo">
+        </a>
+        <div class="navRight">
+            <a class="capsule" href="/main/<%= id %>">Home</a>
+            <a class="capsule" href="/main/<%= id %>/checkout">Cart</a>
+            <a class="capsule" href="/logout">Logout</a>
+
+        </div>
+    </nav>
     <h4>Thank you for your order 💊</h4>
-    <p>Your order will be delivered to <%= data.address %>
-    </p>
+    <p>Your order will be delivered to <%= data.address %></p>
+    <marquee direction="right" width="60%" height="auto" scrollamount="40"><img style="width: 300px; height: auto;" src="https://www.creativefabrica.com/wp-content/uploads/2021/09/21/Fast-Delivery-Icon-Graphics-17621993-1.jpg" alt=""></marquee>
 </body>
 
 </html>
