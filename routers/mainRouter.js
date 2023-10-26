@@ -12,9 +12,14 @@ router.use((req,res,next) => {
 })
 
 router.get('/admin', MainController.mainPageAdmin)
-router.get('/admin/addMedicine', MainController.mainPageAdmin)
-router.get('/admin/edit/:medId', MainController.mainPageAdmin)
-router.get('/admin/delete/:medId', MainController.mainPageAdmin)
+
+router.get('/admin/addMedicine', MainController.renderAddMedicine)
+router.post('/admin/addMedicine', MainController.AddMedicine)
+
+router.get('/admin/edit/:medId', MainController.renderEditMedicine)
+router.post('/admin/edit/:medId', MainController.editMedicine)
+
+router.get('/admin/delete/:medId', MainController.deleteMedicine)
 
 //render main page, tampilan profile user dan find all medicines
 router.get('/:idPatient', MainController.mainPagePatient)

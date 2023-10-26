@@ -234,7 +234,7 @@
 </head>
 <body>
     <nav>
-        <a href="/main/<%= userProfile.id %>" class="logoContainer">
+        <a href="/main/admin/<%= userProfile.id %>" class="logoContainer">
         <img src="/assets/logo.png" alt="" class="logo">
         <p class="logoText">Meds2Go</p>
         </a>
@@ -257,11 +257,11 @@
                     </form>
 
                 </div>
-                <a href="/admin/addMedicine"><button>Add Medicine</button></a>
+                <a href="/main/admin/addMedicine"><button>Add Medicine</button></a>
                 <div>
-                    <a href="/main/<%= userProfile.id %>"><button>Semua</button></a>
-                    <a href="/main/<%= userProfile.id %>?filter=Dewasa"><button>Adult</button></a>
-                    <a href="/main/<%= userProfile.id %>?filter=Anak"><button>Kids</button></a>
+                    <a href="/main/admin/"><button>Semua</button></a>
+                    <a href="/main/admin/?filter=Dewasa"><button>Adult</button></a>
+                    <a href="/main/admin/?filter=Anak"><button>Kids</button></a>
 
                 </div>
             </div>
@@ -280,8 +280,8 @@
                             </div>
                         </div>
                         <div>
-                            <a href="/admin/edit/<%= el.id %>"><button>Edit</button></a>
-                            <a href="/admin/delete/<%= el.id %>"><button>Delete</button></a>
+                            <a href="/main/admin/edit/<%= el.id %>"><button>Edit</button></a>
+                            <a href="/main/admin/delete/<%= el.id %>"><button>Delete</button></a>
                             
                         </div>
                     </div>

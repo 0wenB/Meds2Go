@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add Medicine</title>
+</head>
+<body>
+    <h1>
+        Add Medicine
+    </h1>
+
+    <form action="/main/admin/addMedicine" method="post">
+        <label for="name">Medicine Name</label>
+        <input type="text" name="name">
+        <br><br>
+        <label for="description">Medicine Description</label>
+        <input type="text" name="description">
+        <br><br>
+
+        <label for="price">Medicine Price</label>
+        <input type="text" name="price">
+        <br><br>
+
+        <label for="imageUrl">Medicine Image Url</label>
+        <input type="text" name="imageUrl">
+        <br><br>
+
+        <label for="category">Category</label>
+        <br><br>
+        <select name="category" id="category">
+            <option value="Dewasa">Dewasa</option>
+            <option value="Anak">Anak</option>
+        </select>
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

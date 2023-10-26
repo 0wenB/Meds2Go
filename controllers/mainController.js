@@ -29,6 +29,22 @@ class MainController {
         }
     }
 
+    static async postInvoice(req, res) {
+        try {
+            const input = {
+                ProfileId: req.session.profileId,
+                MedicineId: req.params.idMedicine,
+                quantity: req.body.quantity
+            }
+            let addedInvoice = await Invoice.create(input)
+            console.log(addedInvoice);
+            res.redirect(`/main/${req.params.idPatient}?data=${addedInvoice.MedicineId},${addedInvoice.quantity}`)
+        } catch (error) {
+            res.send(error)
+
+        }
+    }
+
     static async mainPageAdmin(req, res) {
         try {
             let option = {}
@@ -52,6 +68,60 @@ class MainController {
             res.send(error)
         }
     }
+
+    static async renderAddMedicine(req,res){
+        try {
+            res.render('addMedicineForm')
+        } catch (error) {
+            res.send(error)
+            
+        }
+    }
+
+    static async AddMedicine(req,res){
+        try {   
+            console.log(req.body);
+            const {name, description, price, imageUrl, category} = req.body
+            let addMedicine = await Medicine.create({name, description, price, imageUrl, category})
+            res.redirect('/main/admin')
+        } catch (error) {
+            res.send(error)
+            
+        }
+    }
+
+    static async renderEditMedicine(req,res){
+        try {
+            const medicine = await Medicine.findByPk(req.params.medId)
+            res.render('editMedicine', {medicine})
+        } catch (error) {
+            res.send(error)
+            
+        }
+    }
+
+    static async editMedicine(req,res){
+        try {
+            console.log(req.body);
+            const {name, description, price, imageUrl, category} = req.body
+            let updateMedicine = await Medicine.update({name, description, price, imageUrl, category}, {where:{id:req.params.medId}})
+            res.redirect('/main/admin')
+        } catch (error) {
+            res.send(error)
+            
+        }
+    }
+
+    static async deleteMedicine(req,res){
+        try {
+            await Medicine.destroy({where: {id:req.params.medId}})
+            res.redirect('/main/admin')
+        } catch (error) {
+            res.send(error)
+            
+        }
+    }
+    
     static async checkout(req, res) {
         try {
             // console.log('masuk');
@@ -87,21 +157,7 @@ class MainController {
         }
     }
 
-    static async postInvoice(req, res) {
-        try {
-            const input = {
-                ProfileId: req.session.profileId,
-                MedicineId: req.params.idMedicine,
-                quantity: req.body.quantity
-            }
-            let addedInvoice = await Invoice.create(input)
-            console.log(addedInvoice);
-            res.redirect(`/main/${req.params.idPatient}?data=${addedInvoice.MedicineId},${addedInvoice.quantity}`)
-        } catch (error) {
-            res.send(error)
-
-        }
-    }
+    
 }
 
 module.exports = MainController
