@@ -19,7 +19,8 @@ class MainController {
                     }
                 }
             }
-            const userProfile = await Profile.findByPk(req.params.idPatient)
+            console.log(req.session,'<<<<<<<');
+            const userProfile = await Profile.findByPk(req.session.profileId)
             const medicines = await Medicine.findAll(option)
             res.render('mainPage', { userProfile, medicines, formatNumber })
         } catch (error) {
@@ -30,16 +31,31 @@ class MainController {
 
     static async mainPageAdmin(req, res) {
         try {
-
+            let option = {}
+            if (req.query.filter) {
+                option.where = {
+                    category: req.query.filter
+                }
+            }
+            if (req.query.search) {
+                option.where = {
+                    name: {
+                        [Op.iLike]:`%${req.query.search}%`
+                    }
+                }
+            }
+            const userProfile = await Profile.findByPk(req.session.profileId)
+            const medicines = await Medicine.findAll(option)
+            res.render('mainPageAdmin', { userProfile, medicines, formatNumber })
         } catch (error) {
+            console.log(error);
             res.send(error)
         }
     }
     static async checkout(req, res) {
         try {
             // console.log('masuk');
-            const { idPatient } = req.params
-            let data = await Profile.findOne({ where: { id: idPatient }, include: { all: true, nested: true } })
+            let data = await Profile.findOne({ where: { id: req.session.profileId }, include: { all: true, nested: true } })
             // console.log(data.Invoices);
             res.render('checkout', { data, formatNumber })
         } catch (error) {
@@ -50,10 +66,10 @@ class MainController {
     static async checkoutDestroy(req, res) {
         try {
             if (req.query.total) {
-                await Profile.deductBalance(req.params.idPatient,req.query.total)
+                let deduct = await Profile.deductBalance(req.session.profileId,req.query.total)
             }
             const { idPatient } = req.params
-            await Invoice.destroy({ where: { ProfileId: idPatient } })
+            await Invoice.destroy({ where: { ProfileId: req.session.profileId } })
             
             res.redirect(`/main/${idPatient}/thankyou`)
         } catch (error) {
@@ -63,7 +79,7 @@ class MainController {
     static async thankYouPage(req, res) {
         try {
             const { idPatient } = req.params
-            let data = await Profile.findByPk(idPatient)
+            let data = await Profile.findByPk(req.session.profileId)
             // console.log(data);
             res.render('thankyou', { data })
         } catch (error) {
@@ -74,7 +90,7 @@ class MainController {
     static async postInvoice(req, res) {
         try {
             const input = {
-                ProfileId: req.params.idPatient,
+                ProfileId: req.session.profileId,
                 MedicineId: req.params.idMedicine,
                 quantity: req.body.quantity
             }

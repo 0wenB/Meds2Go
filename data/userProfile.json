@@ -3,7 +3,7 @@
         "name" : "Admin Account",
         "age" : 1,
         "profileImage" : "",
-        "gender" : "",
+        "gender" : "Female",
         "UserId" : 1,
         "balance":1000000,
         "address": "admin room"

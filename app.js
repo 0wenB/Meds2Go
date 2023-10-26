@@ -3,6 +3,7 @@ const app = express()
 const port = 3000
 const router = require('./routers')
 const session = require('express-session')
+let flash = require('connect-flash');
 
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended : true}))
@@ -16,6 +17,7 @@ app.use(session({
     // sameSite: true // untuk security dari apache helicopter attack
   }
 }))
+app.use(flash());
 
 app.use(router)
 

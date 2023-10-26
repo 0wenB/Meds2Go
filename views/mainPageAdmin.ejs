@@ -246,17 +246,6 @@
         </div>
     </nav>
     <section>
-        <div class="left container">
-            <img src="<%= userProfile.profileImage %>" alt="" class="img">
-            <div>
-                <h1><%= userProfile.titledName %></h1>
-                <p>Age: <%= userProfile.age %></p>
-                <p>Gender: <%= userProfile.gender %></p>
-                <p>Balance: <%= formatNumber(userProfile.balance) %></p>
-
-            </div>
-
-        </div>
         
         <div class="right">
             <h1 style="text-align: center;">Medicines</h1>
@@ -268,6 +257,7 @@
                     </form>
 
                 </div>
+                <a href="/admin/addMedicine"><button>Add Medicine</button></a>
                 <div>
                     <a href="/main/<%= userProfile.id %>"><button>Semua</button></a>
                     <a href="/main/<%= userProfile.id %>?filter=Dewasa"><button>Adult</button></a>
@@ -289,14 +279,11 @@
                                 
                             </div>
                         </div>
-                        <form action="/main/<%= userProfile.id %>/buy/<%= el.id %>" method="post" class="form">
-                            <div class="number-input">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepDown()" type="button" ></button>
-                                <input class="quantity" min="0" name="quantity" value="1" type="number">
-                                <button onclick="this.parentNode.querySelector('input[type=number]').stepUp()" class="plus" type="button"></button>
-                              </div>
-                            <button type="submit" class="addCart">Add to Cart</button>
-                        </form>
+                        <div>
+                            <a href="/admin/edit/<%= el.id %>"><button>Edit</button></a>
+                            <a href="/admin/delete/<%= el.id %>"><button>Delete</button></a>
+                            
+                        </div>
                     </div>
                 <%}) %>
             </div>

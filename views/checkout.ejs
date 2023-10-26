@@ -6,9 +6,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+        }
+        nav {
+            height: 70px;
+            width: 100%;
+            background-color: #3070cc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        nav a {
+        
+            font-size: 20px;
+            font-weight: 100;
+            text-decoration:none;
+            color: #fff;
+        }
+        .logoContainer{
+            margin-left: 20px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+        }
+        .logo{
+            height: 50px;
+            width: 50px;
+        }
+        .logoText{
+            font-weight: 600;
+        }
+        .navRight{
+            margin-right: 20px;
+        }
+        .capsule{
+            margin: 0 6px;
+            padding: 0 15px;
+            background-color: #2cb2cd;
+            border-style: solid;
+            border-color:white;
+            border-width: 2px;
+            border-radius: 15px;
+        }
+    </style>
 </head>
 
 <body>
+    <nav>
+        <a href="/main/<%= data.id %>" class="logoContainer">
+        <img src="/assets/logo.png" alt="" class="logo">
+        <p class="logoText">Meds2Go</p>
+        </a>
+        <div class="navRight">
+            <a class="capsule" href="/main/<%= data.id %>">Home</a>
+            <a class="capsule" href="/main/<%= data.id %>/checkout">Cart</a>
+            <a class="capsule" href="/logout">Logout</a>
+
+        </div>
+    </nav>
     <div class="container mt-5">
         <h1>Your Orders</h1>
         <% let total=0 %>
@@ -28,7 +87,7 @@
                                     <%=el.Medicine.description %>
                                 </p>
                                 <p class="card-text">
-                                    Price: <%=el.Medicine.price %>
+                                    Price: <%= formatNumber(el.Medicine.price) %>
                                 </p>
                                 <p>Quantity: <%=el.quantity %>
                                 </p>
@@ -37,12 +96,12 @@
                     </div>
                     <%}); %>
                         <hr>
-                        <h4 class="mt-2">Total Price: <%= total %>
+                        <h4 class="mt-2">Total Price: <%= formatNumber(total) %>
                         </h4>
                         <a href="/main/<%= data.id %>/checkout/complete?total=<%= total %>"><button type="submit"
                                 class="btn btn-outline-primary">Checkout</button></a>
     </div>
-
+    <br><br><br><br><br>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
