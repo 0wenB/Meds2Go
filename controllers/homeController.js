@@ -20,8 +20,8 @@ class HomeController {
             const addressError = req.flash('address')
             const emailUnique = req.flash('unique')
 
-            
-            res.render('register', {emailError, passError, nameError, ageError, profileImageError, balanceError, addressError, emailUnique})
+
+            res.render('register', { emailError, passError, nameError, ageError, profileImageError, balanceError, addressError, emailUnique })
         } catch (error) {
             console.log(error);
             res.send(error)
@@ -60,6 +60,10 @@ class HomeController {
                             req.flash('pass', 'Password cannot be Null')
                             break;
 
+                        case 'Password must be at least 8 characters and no more than 40 characters long':
+                            req.flash('pass', 'Password must be at least 8 characters and no more than 40 characters long')
+                            break;
+
                         case 'Name Cannot be Empty':
                             req.flash('name', 'Name Cannot be Empty')
                             break;
@@ -85,7 +89,7 @@ class HomeController {
                     }
                 })
                 res.redirect('/register')
-                
+
             } else if (error.name === "SequelizeUniqueConstraintError") {
                 req.flash('unique', `Email: ${error.errors[0].instance.email} is already registered`)
                 res.redirect('/register')
@@ -100,7 +104,7 @@ class HomeController {
         try {
             const emailError = req.flash('email')
             const passError = req.flash('password')
-            res.render('login', {emailError, passError})
+            res.render('login', { emailError, passError })
         } catch (error) {
             res.send(error)
         }
@@ -132,7 +136,7 @@ class HomeController {
                 } else {
                     req.flash('password', 'Invalid Password')
 
-                    res.redirect(`/login`)   
+                    res.redirect(`/login`)
                 }
 
             } else {
