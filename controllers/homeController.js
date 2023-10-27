@@ -148,6 +148,8 @@ class HomeController {
         }
     }
     static async logout(req, res) {
+        console.log('logout>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+        req.session.logout = true
         try {
             req.session.destroy((err) => {
                 if (err) res.send(err)
