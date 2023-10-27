@@ -1,7 +1,27 @@
 const MainController = require('../controllers/mainController')
 
 const router = require('express').Router()
-const isLoggedIn = 
+
+let isAdmin = function (req, res, next) {
+    if (req.session.userId == 1) {
+        console.log('halohalo>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>');
+        next()
+    } else {
+        res.redirect('/login?message=You are not an Admin')
+    }
+  };
+
+router.get('/admin',isAdmin, MainController.mainPageAdmin)
+
+router.get('/admin/addMedicine',isAdmin, MainController.renderAddMedicine)
+router.post('/admin/addMedicine',isAdmin, MainController.AddMedicine)
+
+router.get('/admin/edit/:medId',isAdmin, MainController.renderEditMedicine)
+router.post('/admin/edit/:medId',isAdmin, MainController.editMedicine)
+
+router.get('/admin/delete/:medId',isAdmin, MainController.deleteMedicine)
+
+
 
 router.use((req,res,next) => {
     if (req.session.userId) {
@@ -11,15 +31,6 @@ router.use((req,res,next) => {
     }
 })
 
-router.get('/admin', MainController.mainPageAdmin)
-
-router.get('/admin/addMedicine', MainController.renderAddMedicine)
-router.post('/admin/addMedicine', MainController.AddMedicine)
-
-router.get('/admin/edit/:medId', MainController.renderEditMedicine)
-router.post('/admin/edit/:medId', MainController.editMedicine)
-
-router.get('/admin/delete/:medId', MainController.deleteMedicine)
 
 //render main page, tampilan profile user dan find all medicines
 router.get('/:idPatient', MainController.mainPagePatient)

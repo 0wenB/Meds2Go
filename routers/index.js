@@ -4,7 +4,6 @@ const router = require('express').Router()
 
 let getUserOrLogin = function (req, res, next) {
     let user = req.session.userId;
-    console.log(req.session);
   
     if (user == null) {
         delete req.session.userId; 
